@@ -1,6 +1,9 @@
 int cas = 0;
 int x=0, y=0;
 int mx,my;
+int unit = 200;
+int half = unit/2;
+int map = 600;
 
 void setup(){
     size(600,600);
@@ -14,20 +17,20 @@ void draw(){
     text("case: ("+x+','+y+')',50,30);
     mousePos();
     if(mousePressed){
-        if(x%2==0) rect(x*100-2,y*200,4,200);
-        else rect(x*100-100,y*200-2,200,4);
+        if(x%2==0) rect(x*half-2,y*unit,4,unit);
+        else rect(x*half-half,y*unit-2,unit,4);
     }
 }
 
 void mousePos(){
-    x = 2*(mouseX/200);
-    y = mouseY/200;
-    mx = mouseX%200;
-    my = mouseY%200;
+    x = 2*(mouseX/unit);
+    y = mouseY/unit;
+    mx = mouseX%unit;
+    my = mouseY%unit;
     if(mx>my){
-        if((200-mx)<my){x+=2;}
+        if((unit-mx)<my){x+=2;}
         else{x++;}
-    }else if((200-mx)<my){x++;y++;}
+    }else if((unit-mx)<my){x++;y++;}
 }
 
 
@@ -36,13 +39,13 @@ void grid(){
     int i,j;
     for(i=0;i<3;i++){
         j=i+1;
-        line(0,i*200,600,i*200);
-        line(i*200,0,i*200,600);
-        line(0,j*200,j*200,0); 
-        line(600-(j*200),0,600,j*200);
+        line(0,i*unit,map,i*unit);
+        line(i*unit,0,i*unit,map);
+        line(0,j*unit,j*unit,0); 
+        line(map-(j*unit),0,map,j*unit);
     }
     for(i=1;i<3;i++){
-       line(i*200,600,600,i*200);
-       line(0,600-(i*200),i*200,600);
+       line(i*unit,map,map,i*unit);
+       line(0,map-(i*unit),i*unit,map);
     }
 }
